@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Order Details</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .table thead {
+            background-color: #f0f0f0;
+        }
+        .table th, .table td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+            font-size: 14px;
+        }
+        .table th {
+            font-weight: 600;
+        }
+        .table img {
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <!-- Removed User Name header -->
+                <th>Address</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Image</th>
+                <th>Product Status</th>
+                <th>Order Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in data %}
+            <tr>
+                <!-- Removed User Name data -->
+                <td>
+                    {{ i.user_details.building_name }},
+                    {{ i.user_details.road_name }},
+                    {{ i.user_details.city }},
+                    {{ i.user_details.pincode }},
+                    {{ i.user_details.state }}
+                </td>
+                <td>{{ i.product_details.name }}</td>
+                <td>{{ i.amount }}</td>
+                <td>{{ i.quantity }}</td>
+                <td>
+                    <img src="{{ i.product_details.image.url }}" width="80" height="50" alt="Product Image" />
+                </td>
+                <td>{{ i.product_status }}</td>
+                <td>{{ i.order_date }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

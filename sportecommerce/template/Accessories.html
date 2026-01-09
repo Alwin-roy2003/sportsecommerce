@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KickSport | Accessories</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding-top: 100px;
+      background-color: #f4f6f8;
+      color: #1e2a38;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px 20px 30px;
+      background-color: #1e2a38;
+      color: white;
+      z-index: 1000;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 22px;
+      color: #00bfa6;
+    }
+
+    .filter-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #00bfa6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      min-width: 90px;
+      z-index: 1100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+    }
+    .filter-toggle:hover {
+      background-color: #009e8a;
+    }
+
+    .filter-panel {
+      display: none;
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      max-width: 100vw;
+      width: 220px;
+      background-color: #ffffff;
+      padding: 12px 15px;
+      border-radius: 8px 0 0 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+      z-index: 1099;
+      overflow-y: auto;
+      max-height: calc(100vh - 80px);
+      color: #1e2a38;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .filter-panel label {
+      margin-top: 12px;
+      display: block;
+    }
+
+    .filter-panel select {
+      width: 100%;
+      font-size: 14px;
+      padding: 6px 8px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f8f8f8;
+      height: 32px;
+      color: #1e2a38;
+      font-weight: normal;
+      cursor: pointer;
+      transition: border-color 0.3s;
+    }
+    .filter-panel select:hover,
+    .filter-panel select:focus {
+      border-color: #00bfa6;
+      outline: none;
+    }
+
+    /* Product Grid */
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      width: 90%;
+      margin: 0 auto 40px;
+      max-width: 400px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 15px 0 5px;
+      color: #1e2a38;
+    }
+
+    .product-price {
+      font-size: 18px;
+      color: #00bfa6;
+      font-weight: bold;
+    }
+
+    .quantity {
+      margin: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #555;
+    }
+
+    .quantity label {
+      margin-right: 8px;
+    }
+
+    .quantity input {
+      width: 50px;
+      padding: 5px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      justify-content: center;
+    }
+
+    .cart-btn, .buy-btn {
+      flex: 1;
+      padding: 10px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+
+    .cart-btn {
+      background-color: #00bfa6;
+      color: white;
+    }
+
+    .buy-btn {
+      background-color: #1e2a38;
+      color: white;
+    }
+
+    .cart-btn:hover {
+      background-color: #00a78f;
+    }
+
+    .buy-btn:hover {
+      background-color: #2c3b50;
+    }
+
+    .material-icons {
+      font-size: 20px;
+      margin-right: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .product-container {
+        width: 95%;
+        max-width: none;
+      }
+
+      .filter-panel {
+        width: 90%;
+        right: 5%;
+        border-radius: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <h1>KickSport | Accessories</h1>
+  </div>
+
+  <!-- Filter Button -->
+  <button class="filter-toggle" onclick="toggleFilters()">Filters</button>
+
+  <!-- Filter Panel -->
+  <div class="filter-panel" id="filterPanel">
+    <label for="sort-by">Sort By</label>
+    <select id="sort-by" onchange="filterAndSort()">
+      <option value="default">Default</option>
+      <option value="price-low-high">Price: Low to High</option>
+      <option value="price-high-low">Price: High to Low</option>
+      <option value="newest">Newest</option>
+    </select>
+
+    <label for="brand">Brand</label>
+    <select id="brand" onchange="filterAndSort()">
+      <option value="all">All</option>
+      <option value="nike">Nike</option>
+      <option value="adidas">Adidas</option>
+      <option value="puma">Puma</option>
+      <option value="nivia">Nivia</option>
+    </select>
+
+    <label for="discount">Discount</label>
+    <select id="discount" onchange="filterAndSort()">
+      <option value="all">All Discounts</option>
+      <option value="10">10%+</option>
+      <option value="25">25%+</option>
+      <option value="50">50%+</option>
+    </select>
+  </div>
+
+  <!-- Product Cards -->
+  <div class="product-container" id="product-container">
+    <div class="product-card" data-brand="nike" data-price="799" data-discount="10" data-newest="3">
+      <img src="https://example.com/nike-shinguards.jpg" alt="Nike Shinguards" />
+      <div class="product-title">Nike Shinguards</div>
+      <div class="product-price">₹799</div>
+      <div class="quantity">
+        <label>Qty:</label>
+        <input type="number" value="1" min="1" />
+      </div>
+      <div class="button-group">
+        <button class="cart-btn"><span class="material-icons">shopping_cart</span>Cart</button>
+        <button class="buy-btn">Buy</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleFilters() {
+      const panel = document.getElementById('filterPanel');
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function filterAndSort() {
+      const sortValue = document.getElementById('sort-by').value;
+      const brandValue = document.getElementById('brand').value;
+      const discountValue = document.getElementById('discount').value;
+
+      let filteredProducts = [...document.querySelectorAll('.product-card')];
+
+      // Filter by Brand
+      if (brandValue !== 'all') {
+        filteredProducts = filteredProducts.filter(product => product.getAttribute('data-brand') === brandValue);
+      }
+
+      // Filter by Discount
+      if (discountValue !== 'all') {
+        const discount = parseInt(discountValue);
+        filteredProducts = filteredProducts.filter(product => {
+          const productDiscount = parseInt(product.getAttribute('data-discount'));
+          return productDiscount >= discount;
+        });
+      }
+
+      // Sort Products
+      if (sortValue === 'price-low-high') {
+        filteredProducts.sort((a, b) => parseInt(a.getAttribute('data-price')) - parseInt(b.getAttribute('data-price')));
+      } else if (sortValue === 'price-high-low') {
+        filteredProducts.sort((a, b) => parseInt(b.getAttribute('data-price')) - parseInt(a.getAttribute('data-price')));
+      } else if (sortValue === 'newest') {
+        filteredProducts.sort((a, b) => parseInt(b.getAttribute('data-newest')) - parseInt(a.getAttribute('data-newest')));
+      }
+
+      const productContainer = document.getElementById('product-container');
+      productContainer.innerHTML = '';
+      filteredProducts.forEach(product => productContainer.appendChild(product));
+    }
+
+    // Initialize filter panel hidden and default filter applied
+    filterAndSort();
+  </script>
+
+</body>
+</html>

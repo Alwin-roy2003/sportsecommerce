@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - update Product</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 12px 8px;
+            vertical-align: top;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Update Product</h2>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><label for="name">Product Name:</label></td>
+                <td>{{data.name}}</td>
+            </tr>
+            <tr>
+                <td><label for="price">Price:</label></td>
+                <td>{{data.price}}</td>
+            </tr>
+            <tr>
+                <td><label for="quantity">Quantity:</label></td>
+                <td>{{data.quantity}}</td>
+            </tr>
+            <tr>
+                <td><label for="category">Category:</label></td>
+                <td>
+                    {{data.category}}
+                </td>
+            </tr>
+            <tr id="size-row" style="display: none;">
+    <td><label for="size">Size:</label></td>
+    <td>
+        {{data.size}}
+    </td>
+</tr>
+
+            <tr>
+                <td><label for="image">Product Image:</label></td>
+                <td>{{data.image}}</td>
+            </tr>
+        </table>
+        <button type="submit">update</button>
+    </form>
+</div>
+<script>
+document.getElementById('category').addEventListener('change', function () {
+    var category = this.value;
+    var sizeRow = document.getElementById('size-row');
+    if (category === 'Jersey' || category === 'Football boots') {
+        sizeRow.style.display = '';
+    } else {
+        sizeRow.style.display = 'none';
+        document.getElementById('size').value = '';  // Clear size if hidden
+    }
+});
+</script>
+
+</body>
+</html>

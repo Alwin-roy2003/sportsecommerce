@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forgot Password</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-container {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+        .form-control {
+            height: 50px;
+            font-size: 16px;
+        }
+        .btn-success {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+        }
+        .alert {
+            margin: 20px auto;
+            width: 100%;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+
+{% if messages %}
+<div id="alert-container">
+    {% for m in messages %}
+        <div class="alert alert-danger" role="alert">
+            <a href="#" class="alert-link">{{ m }}</a>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- alert-messages-end -->
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="form-container">
+                <div class="text-center">
+                    <h1>Forgot Password</h1>
+                </div>
+                <form action="forgot" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input type="email" name="email" class="form-control form-manual" placeholder="Enter Your Email Address" required>
+                    </div>
+                    <div class="d-grid">
+                        <input type="submit" class="btn btn-success" value="Reset Password">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

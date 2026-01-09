@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+
+        h5, h6 {
+            color: #2c3e50;
+        }
+
+        .gallery {
+            margin: 10px;
+        }
+
+        .card {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            margin-top: 30px;
+            padding: 10px 20px;
+            font-weight: 500;
+            border-radius: 6px;
+        }
+
+        .price-details {
+            margin-top: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .price-details h6 {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h5 style="text-align: center; font-weight: 600; font-size: 1.5rem; text-transform: uppercase;">Products</h5>
+
+<div style="display: flex; gap: 20px;">
+  <div style="flex: 1;">
+    {% for i in data %}
+    <div class="gallery d-inline-flex">
+        <div class="container">
+            <div class="card" style="width:200px">
+                <div class="card-body">
+                    <img src="{{i.products.image.url}}" alt="Card image" width="100" height="100">
+                    <h4 class="card-tittle">{{i.products.name}}</h4>
+                    <p class="card-text">Price: {{i.total_price}}</p>
+                    <p class="card-text">Quantity: {{i.quantity}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div style="width: 300px;">
+    <div class="container">
+        <h5 style="text-decoration: underline;">Order Summary</h5>
+        <h6>Deliver To:</h6>
+        <p>Name : {{user.name}}</p>
+        <p>Phone : {{user.Phone}}</p>
+        <p>Email : {{user.Email}}</p>
+        <p>Address: {{user.building_name}}, {{user.road_name}}, {{user.city}}, {{user.pincode}}, {{user.state}}</p>
+
+        <div class="price-details">
+            <h6 style="text-decoration: underline;">Price Details</h6>
+            <h6>Total items: {{quantity}}</h6>
+            <h6>Total Price: {{total}}</h6>
+        </div>
+
+        <a href="payment/{{total}}" class="btn btn-primary" style="display: block; margin: 20px auto 0; width: fit-content;">Proceed To Pay</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

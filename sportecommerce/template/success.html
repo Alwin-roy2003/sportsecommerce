@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Success</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .success-container {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        .success-message {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .success-message1 {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        .btn-primary {
+            background-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-orange {
+            background-color: #ff7f50;
+        }
+        .btn-orange:hover {
+            background-color: #e76e3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-message">Payment Successful!</div>
+        <div class="success-message1">Your order has been placed</div><br>
+        <a href="userhome" class="btn btn-primary">Back to home</a>
+        <a href="myorder" class="btn btn-orange">My Order</a>
+    </div>
+</body>
+</html>
